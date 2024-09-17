@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\LoginForm;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,3 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome');
+Route::get('login', LoginForm::class)->name('login');
+
+Route::middleware('auth')->group(function() {
+});
