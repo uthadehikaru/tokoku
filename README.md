@@ -1,73 +1,80 @@
-# Laravel Project
+# Aplikasi E-commerce Laravel
 
-This is a Laravel-based web application project.
+Aplikasi e-commerce berbasis Laravel dengan fitur manajemen produk, keranjang belanja, checkout, dan autentikasi pengguna.
 
-## Description
+## Spesifikasi Teknis
 
-This project is built using the Laravel PHP framework, providing a robust foundation for developing modern web applications. It includes features such as:
+- Framework: Laravel 10.x
+- PHP: 8.1+
+- Database: MySQL 5.7+
+- Frontend: Livewire, Tailwind CSS
+- Autentikasi: Laravel Breeze
+- Admin Panel: Filament
 
-- MVC architecture
-- Eloquent ORM for database interactions
-- Blade templating engine
-- Built-in authentication system
-- RESTful routing
-- Artisan command-line tool
+## Fitur Utama
 
-## Setup Instructions
+- Katalog produk dengan pencarian dan filter
+- Keranjang belanja
+- Proses checkout
+- Manajemen pesanan
+- Autentikasi pengguna (login, register)
+- Panel admin untuk manajemen produk dan pesanan
 
-Follow these steps to set up the project on your local machine:
+## Cara Setup
 
-1. Clone the repository:
+1. Clone repositori:
    ```
-   git clone https://github.com/your-username/your-project-name.git
+   git clone https://github.com/username/nama-proyek.git
    ```
 
-2. Navigate to the project directory:
+2. Masuk ke direktori proyek:
    ```
-   cd your-project-name
+   cd nama-proyek
    ```
 
-3. Install PHP dependencies using Composer:
+3. Install dependensi PHP:
    ```
    composer install
    ```
 
-4. Copy the example environment file and create a new .env file:
+4. Salin file .env.example menjadi .env:
    ```
    cp .env.example .env
    ```
 
-5. Generate an application key:
+5. Generate application key:
    ```
    php artisan key:generate
    ```
 
-6. Configure your database in the .env file:
+6. Konfigurasi database di file .env:
    ```
    DB_CONNECTION=mysql
    DB_HOST=127.0.0.1
    DB_PORT=3306
-   DB_DATABASE=your_database_name
-   DB_USERNAME=your_database_username
-   DB_PASSWORD=your_database_password
+   DB_DATABASE=nama_database
+   DB_USERNAME=username_database
+   DB_PASSWORD=password_database
    ```
 
-7. Run database migrations:
+7. Jalankan migrasi database:
    ```
-   php artisan migrate
+   php artisan migrate --seed
    ```
 
-8. Start the development server:
+8. Jalankan server development:
    ```
    php artisan serve
    ```
 
-9. Visit `http://localhost:8000` in your web browser to see the application.
+9. Buka `http://localhost:8000` di browser Anda.
 
-## Additional Configuration
+## User Demo
 
-For more detailed configuration and customization options, please refer to the [Laravel documentation](https://laravel.com/docs).
+1. Admin:
+   - Email: admin@laravel.test
+   - Password: secret
 
-## License
+## Lisensi
 
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Proyek ini dilisensikan di bawah [MIT license](https://opensource.org/licenses/MIT).
