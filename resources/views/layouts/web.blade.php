@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{ config('app.name' )}}</title>
+        <link rel="icon" href="{{ asset('tokoku.png') }}" type="image/x-icon">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -15,21 +16,30 @@
         
         <!-- Tailwind CSS (required for DaisyUI) -->
         <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Sweetalert2 CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css">
+        @stack('styles')
     </head>
     <body>
         <header class="text-gray-600 body-font">
             <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
                 <a href="{{ url('/') }}" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-yellow-500 rounded-full" viewBox="0 0 24 24">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
+                <img src="{{ asset('tokoku.png') }}" alt="Logo" class="w-10 h-10">
                 <span class="ml-3 text-xl">{{ config('app.name' )}}</span>
                 </a>
                 <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <a class="mr-5 hover:text-gray-900">First Link</a>
-                <a class="mr-5 hover:text-gray-900">Second Link</a>
-                <a class="mr-5 hover:text-gray-900">Third Link</a>
-                <a class="mr-5 hover:text-gray-900">Fourth Link</a>
+                    <a href="{{ route('product.list') }}" class="mr-5 hover:text-gray-900">Produk</a>
+                    <a href="{{ route('cart') }}" class="mr-5 hover:text-gray-900 relative">
+                        Keranjang
+                        @if (count(session('cart', [])) > 0)
+                        <span class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs animate-pulse">
+                            {{ count(session('cart', [])) }}
+                        </span>
+                        @endif
+                    </a>
+                    <a href="{{ route('article.list') }}" class="mr-5 hover:text-gray-900">Artikel</a>
+                    <a href="{{ url('about') }}" class="mr-5 hover:text-gray-900">Tentang Kami</a>
                 </nav>
                 @guest
                 <a href="{{ route('login') }}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Masuk
@@ -39,17 +49,19 @@
                 </a>
                 @endguest
                 @auth
-                <a href="{{ route('logout') }}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Keluar
+                @if (auth()->user()->role == 'admin')
+                <a href="{{ route('filament.admin.pages.dashboard') }}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Dashboard</a>
+                @else
+                <a href="{{ route('dashboard') }}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Dashboard</a>
+                                @endif
                 @endauth
             </div>
         </header>
         @yield('content')
         <footer class="text-gray-600 body-font">
             <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-                <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-yellow-500 rounded-full" viewBox="0 0 24 24">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
+                <a href="{{ url('/') }}" class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+                <img src="{{ asset('tokoku.png') }}" alt="Logo" class="w-10 h-10">
                 <span class="ml-3 text-xl">{{ config('app.name' )}}</span>
                 </a>
                 <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© {{ date('Y') }} {{ config('app.name' )}} —
@@ -81,5 +93,22 @@
                 </span>
             </div>
             </footer>
+
+        <!-- Sweetalert2 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+        <script>
+            document.addEventListener('livewire:init', function() {
+                Livewire.on('message', (event) => {
+                    Swal.fire({
+                        title: 'Berhasil!',
+                        text: event.detail,
+                        icon: 'success',
+                        timer: 1000,
+                        showConfirmButton: false
+                    });
+                });
+            });
+        </script>
+        @stack('scripts')
     </body>
 </html>

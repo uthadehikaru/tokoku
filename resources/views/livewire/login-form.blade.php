@@ -18,9 +18,7 @@
                             <span class="label-text">Kata Sandi</span>
                         </label>
                         <input type="password" placeholder="Kata Sandi" class="input input-bordered" wire:model="password" required />
-                        <label class="label">
-                            <a href="#" class="label-text-alt link link-hover">Lupa kata sandi?</a>
-                        </label>
+                        
                     </div>
                     <div class="form-control mt-6">
                         <button type="submit" class="btn btn-primary">Masuk</button>
