@@ -24,12 +24,12 @@ Aplikasi e-commerce berbasis Laravel dengan fitur manajemen produk, keranjang be
 
 1. Clone repositori:
    ```
-   git clone https://github.com/username/nama-proyek.git
+   git clone https://github.com/uthadehikaru/tokoku
    ```
 
 2. Masuk ke direktori proyek:
    ```
-   cd nama-proyek
+   cd tokoku
    ```
 
 3. Install dependensi PHP:
