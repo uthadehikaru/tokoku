@@ -4,5 +4,8 @@
     "Home": "Halaman Utama",
     "Not Found": "Tidak ditemukan",
     "Server Error": "Kesalahan Server",
-    "Service Unavailable": "Layanan Tidak Tersedia"
+    "Service Unavailable": "Layanan Tidak Tersedia",
+    "pending": "Menunggu",
+    "completed": "Selesai",
+    "cancelled": "Dibatalkan"
 }

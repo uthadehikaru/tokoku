@@ -41,11 +41,17 @@ class OrderResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('customer_address')
                     ->required(),
-                Forms\Components\TextInput::make('status')
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'pending' => __('pending'),
+                        'completed' => __('completed'),
+                        'cancelled' => __('cancelled'),
+                    ])
+                    ->default('pending')
                     ->required(),
-                Forms\Components\TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('user_id')
+                    ->relationship('user', 'name')
+                    ->required(),
             ]);
     }
 
@@ -75,9 +81,17 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('customer_address')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending' => 'warning',
+                        'completed' => 'success',
+                        'cancelled' => 'danger',
+                        default => 'secondary',
+                    })
+                    ->formatStateUsing(fn (string $state): string => __($state))
                     ->searchable(),
-                Tables\Columns\TextColumn::make('user_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('Customer') 
                     ->sortable(),
             ])
             ->filters([

@@ -24,7 +24,14 @@
             </div>
             <div class="mt-4">
                 <p class="font-semibold">Status Pesanan:</p>
-                <p class="text-green-600 font-bold">{{ $order->status ?? 'Menunggu Pembayaran' }}</p>
+                <p class="{{ match($order->status) {
+                    'pending' => 'text-yellow-600',
+                    'completed' => 'text-green-600',
+                    'cancelled' => 'text-red-600',
+                    default => 'text-gray-600'
+                } }} font-bold">
+                    {{ __($order->status) }}
+                </p>
             </div>
         </div>
     <div class="flex shadow-md my-10">

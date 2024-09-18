@@ -24,7 +24,6 @@ Aplikasi e-commerce berbasis Laravel dengan fitur manajemen produk, keranjang be
 
 1. Clone repositori:
    ```
-   git clone https://github.com/uthadehikaru/tokoku
    ```
 
 2. Masuk ke direktori proyek:
